@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getData } from "../services/storage";
 import type { Data } from "../types";
 import { useNavigate } from "react-router-dom";
+import HeaderComponent from "../components/Header";
 
 export default function Home() {
   const [data, setData] = useState<Data | null>(null);
@@ -15,6 +16,7 @@ export default function Home() {
 
   return (
     <div className="p-6">
+      <HeaderComponent />
       <h1 className="text-2xl font-bold mb-4">Estufas</h1>
 
       <div className="grid grid-cols-2 gap-4">

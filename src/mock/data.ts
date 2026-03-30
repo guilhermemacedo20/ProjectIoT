@@ -1,28 +1,28 @@
 import type { Data } from "../types";
 
 export const initialData: Data = {
-  estufas: [
+  greenHouse: [
     {
       id: 1,
-      nome: "Alface",
-      temperatura: 24,
-      umidadeAr: 68,
-      umidadeSolo: 45,
-      luminosidade: 30000,
-      irrigacao: true,
+      name: "Alface",
+      temperature: 24,
+      airHumidity: 68,
+      soilHumidity: 45,
+      luminosity: 30000,
+      irrigation: true,
     },
     {
       id: 2,
-      nome: "Repolho",
-      temperatura: 20,
-      umidadeAr: 75,
-      umidadeSolo: 55,
-      luminosidade: 50000,
-      irrigacao: false,
+      name: "Repolho",
+      temperature: 20,
+      airHumidity: 75,
+      soilHumidity: 55,
+      luminosity: 50000,
+      irrigation: false,
     },
   ],
-  alertas: [
-    { id: 1, tipo: "Erro", msg: "Falha na irrigação" },
-    { id: 2, tipo: "Crítico", msg: "Temperatura fora do padrão" },
+  alerts: [
+    { id: 1, type: "Erro", msg: "Falha na irrigação" },
+    { id: 2, type: "Crítico", msg: "Temperatura fora do padrão" },
   ],
 };

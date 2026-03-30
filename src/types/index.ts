@@ -10,7 +10,7 @@ export interface GreenHouse {
 
 export interface Alert {
   id: number;
-  tipo: string;
+  type: string;
   msg: string;
 }
 
