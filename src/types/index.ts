@@ -1,20 +1,20 @@
-export interface Estufa {
+export interface GreenHouse {
   id: number;
-  nome: string;
-  temperatura: number;
-  umidadeAr: number;
-  umidadeSolo: number;
-  luminosidade: number;
-  irrigacao: boolean;
+  name: string;
+  temperature: number;
+  airHumidity: number;
+  soilHumidity: number;
+  luminosity: number;
+  irrigation: boolean;
 }
 
-export interface Alerta {
+export interface Alert {
   id: number;
   tipo: string;
   msg: string;
 }
 
 export interface Data {
-  estufas: Estufa[];
-  alertas: Alerta[];
+  greenHouse: GreenHouse[];
+  alerts: Alert[];
 }

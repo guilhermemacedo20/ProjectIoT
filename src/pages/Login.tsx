@@ -6,7 +6,7 @@ export default function Login() {
   return (
     <div className="h-screen flex items-center justify-center bg-green-200">
       <div className="bg-white p-6 rounded-xl shadow">
-        <h1 className="text-xl font-bold mb-4">Monitoramento</h1>
+        <h1 className="text-xl font-bold mb-4 uppercase">Monitoramento de Estufas</h1>
         <input className="input mb-2" placeholder="Usuário" />
         <input className="input mb-4" type="password" placeholder="Senha" />
 

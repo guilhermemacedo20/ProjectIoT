@@ -18,20 +18,20 @@ export default function Home() {
       <h1 className="text-2xl font-bold mb-4">Estufas</h1>
 
       <div className="grid grid-cols-2 gap-4">
-        {data.estufas.map((e) => (
+        {data.greenHouse.map((e) => (
           <div
             key={e.id}
             className="card cursor-pointer"
             onClick={() => navigate(`/estufa/${e.id}`)}
           >
-            <h2 className="font-bold">{e.nome}</h2>
-            <p>🌡 {e.temperatura}°C</p>
-            <p>💧 Solo: {e.umidadeSolo}%</p>
-            <p>☀ {e.luminosidade} lux</p>
+            <h2 className="font-bold">{e.name}</h2>
+            <p>🌡 {e.temperature}°C</p>
+            <p>💧 Solo: {e.soilHumidity}%</p>
+            <p>☀ {e.luminosity} lux</p>
             <p>
               Irrigação:
-              <span className={e.irrigacao ? "text-green-600" : "text-red-600"}>
-                {e.irrigacao ? " Ativa" : " Desligada"}
+              <span className={e.irrigation ? "text-green-600" : "text-red-600"}>
+                {e.irrigation ? " Ativa" : " Desligada"}
               </span>
             </p>
           </div>
