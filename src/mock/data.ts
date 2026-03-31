@@ -10,6 +10,7 @@ export const initialData: Data = {
       soilHumidity: 45,
       luminosity: 30000,
       irrigation: true,
+      waterConsumption: 120,
     },
     {
       id: 2,
@@ -19,6 +20,7 @@ export const initialData: Data = {
       soilHumidity: 55,
       luminosity: 50000,
       irrigation: false,
+      waterConsumption: 80,
     },
   ],
   alerts: [

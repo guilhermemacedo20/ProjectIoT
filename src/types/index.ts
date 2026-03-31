@@ -6,6 +6,7 @@ export interface GreenHouse {
   soilHumidity: number;
   luminosity: number;
   irrigation: boolean;
+  waterConsumption: number;
 }
 
 export interface Alert {

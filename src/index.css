@@ -7,7 +7,7 @@
 }
 
 .card {
-  @apply bg-white rounded shadow;
+  @apply bg-white shadow;
 }
 body{
   background-color: aquamarine;
