@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { getData } from "../services/storage";
 import ChartComponent from "../components/Chart";
+import HeaderComponent from "../components/Header";
 
 export default function Estufa() {
   const { id } = useParams();
@@ -11,7 +12,8 @@ export default function Estufa() {
   if (!estufa) return <p>Estufa não encontrada</p>;
 
   return (
-    <div className="p-6">
+    <>
+      <HeaderComponent />
       <h1 className="text-xl font-bold mb-4">{estufa.name}</h1>
 
       <div className="grid grid-cols-3 gap-4">
@@ -23,6 +25,6 @@ export default function Estufa() {
       <div className="mt-6">
         <ChartComponent />
       </div>
-    </div>
+    </>
   );
 }
