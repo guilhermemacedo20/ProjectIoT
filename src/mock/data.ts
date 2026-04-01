@@ -11,6 +11,8 @@ export const initialData: Data = {
       luminosity: 30000,
       irrigation: true,
       waterConsumption: 120,
+      ventilation: true,
+      ilumination: false,
     },
     {
       id: 2,
@@ -21,6 +23,8 @@ export const initialData: Data = {
       luminosity: 50000,
       irrigation: false,
       waterConsumption: 80,
+      ventilation: false,
+      ilumination: true,
     },
   ],
   alerts: [

@@ -7,6 +7,8 @@ export interface GreenHouse {
   luminosity: number;
   irrigation: boolean;
   waterConsumption: number;
+  ilumination: boolean;
+  ventilation: boolean;
 }
 
 export interface Alert {
@@ -15,7 +17,15 @@ export interface Alert {
   msg: string;
 }
 
+export interface Schedule {
+  id: number;
+  time: string;
+  duration: string;
+  days: string[];
+}
+
 export interface Data {
   greenHouse: GreenHouse[];
   alerts: Alert[];
+  schedule?: Schedule[];
 }

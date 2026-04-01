@@ -10,5 +10,6 @@
   @apply bg-white shadow;
 }
 body{
-  background-color: aquamarine;
+  @apply bg-gradient-to-b from-[#7cce6b] to-[#d8ffd0];
+  height: 100vh;
 }
