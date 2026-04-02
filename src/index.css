@@ -9,7 +9,10 @@
 .card {
   @apply bg-white shadow;
 }
+html, body {
+  @apply min-h-screen;
+}
+
 body{
   @apply bg-gradient-to-b from-[#7cce6b] to-[#d8ffd0];
-  height: 100vh;
 }

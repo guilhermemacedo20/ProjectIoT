@@ -80,10 +80,10 @@ export default function Home() {
         ))}
       </div>
       <div className="flex flex-col lg:flex-row my-20 justify-center gap-12">
-      <div className="flex flex-col sm:flex-row items-center gap-12 bg-white rounded-[36px] p-6 shadow-md w-fit px-[5%]">
+      <div className="flex flex-col sm:flex-row items-center gap-12 bg-white rounded-[36px] p-6 shadow-md w-full lg:w-fit px-[5%]">
         <div className="text-6xl">🏢</div>
 
-          <div className="flex gap-6">
+          <div className="flex flex-col lg:flex-row gap-6">
             {data.greenHouse.map((e) => (
               <div
                 key={e.id}
@@ -103,7 +103,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <div className="flex flex-col items-center bg-white rounded-[36px] shadow-md overflow-hidden w-[35%] mx-12">
+        <div className="flex flex-col items-center bg-white rounded-[36px] shadow-md overflow-hidden lg:w-[35%] lg:mx-12">
           <div className="w-full flex items-center justify-center gap-2 px-4 py-3 font-bold text-lg border-b border-black/30">
             <span>⚠️</span>
             <span>Alertas do Sistema</span>
