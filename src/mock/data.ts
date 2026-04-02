@@ -13,6 +13,17 @@ export const initialData: Data = {
       waterConsumption: 120,
       ventilation: true,
       ilumination: false,
+      plagueControle:[{
+        date: "2024-06-01",
+        text: "Aplicação de fungicida para controle de oídio"
+      }],
+      history:{
+        temperature: [20, 22, 21],
+        airHumidity: [60, 65, 70],
+        soilHumidity: [40, 45, 50],
+        luminosity: [30000, 32000, 28000],
+        irrigation: [1, 0, 1],
+      }
     },
     {
       id: 2,
@@ -25,10 +36,21 @@ export const initialData: Data = {
       waterConsumption: 80,
       ventilation: false,
       ilumination: true,
+      plagueControle:[{
+        date: "2024-06-01",
+        text: "Aplicação de fungicida para controle de oídio"
+      }],
+      history:{
+        temperature: [20, 22, 21],
+        airHumidity: [60, 65, 70],
+        soilHumidity: [40, 45, 50],
+        luminosity: [30000, 32000, 28000],
+        irrigation: [1, 0, 1],
+      }
     },
   ],
   alerts: [
     { id: 1, type: "Erro", msg: "Falha na irrigação" },
     { id: 2, type: "Crítico", msg: "Temperatura fora do padrão" },
-  ],
+  ]
 };

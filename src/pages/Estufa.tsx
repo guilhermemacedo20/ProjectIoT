@@ -1,16 +1,17 @@
 import HeaderComponent from "../components/Header";
 import { useState } from "react";
-import TemperatureModal from "../components/TemperatureModal";
 import { useEstufaData } from "../hooks/data";
 import PlagueControlModal from "../components/PlagueControlModal";
 import { useParams } from "react-router-dom";
+import TrackModal from "../components/TrackModal";
 
 export default function Estufa() {
   const { id } = useParams();
   const { data } = useEstufaData();
   const estufa = data.greenHouse.find((e) => e.id === parseInt(id || "0"));
 
-  const [openTemp, setOpenTemp] = useState(false);
+  const [openTrack, setOpenTrack] = useState(false);
+  const [trackType, setTrackType] = useState<any>(null);
   const [openSchedule, setOpenSchedule] = useState(false);
 
 
@@ -36,7 +37,10 @@ export default function Estufa() {
                   </div>
 
                   <button
-                    onClick={() => setOpenTemp(true)}
+                    onClick={() => {
+                      setTrackType("temp");
+                      setOpenTrack(true);
+                    }}
                     className="absolute bottom-3 right-3 bg-green-400 w-10 h-10 rounded-full text-xl"
                   >
                     +
@@ -50,6 +54,15 @@ export default function Estufa() {
                   <div className="mt-4 text-3xl font-bold">
                     💨 {estufa.airHumidity}%
                   </div>
+                  <button
+                    onClick={() => {
+                      setTrackType("air");
+                      setOpenTrack(true);
+                    }}
+                    className="absolute bottom-3 right-3 bg-green-400 w-10 h-10 rounded-full text-xl"
+                  >
+                    +
+                  </button>
                 </div>
 
                 <div className="bg-white rounded-3xl shadow p-4 relative w-full">
@@ -59,6 +72,15 @@ export default function Estufa() {
                   <div className="mt-4 text-3xl font-bold">
                     🌱 {estufa.soilHumidity}%
                   </div>
+                  <button
+                    onClick={() => {
+                      setTrackType("soil");
+                      setOpenTrack(true);
+                    }}
+                    className="absolute bottom-3 right-3 bg-green-400 w-10 h-10 rounded-full text-xl"
+                  >
+                    +
+                  </button>
                 </div>
               </div>
               <div className="flex gap-6 w-full">
@@ -72,7 +94,10 @@ export default function Estufa() {
                   </div>
 
                   <button
-                    onClick={() => setOpenTemp(true)}
+                    onClick={() => {
+                      setTrackType("light");
+                      setOpenTrack(true);
+                    }}
                     className="absolute bottom-3 right-3 bg-green-400 w-10 h-10 rounded-full text-xl"
                   >
                     +
@@ -82,7 +107,6 @@ export default function Estufa() {
                   <div className="bg-[#3d1700] rounded-3xl shadow p-4 relative w-full justify-center items-center flex flex-col gap-4">
                     <p className=" text-white rounded px-4 py-2 text-xl font-bold">VENTILAÇÃO</p>
                    <button
-                      onClick={() => setOpenTemp(true)}
                       className=" text-white rounded px-4 py-2 text-xl font-bold"
                     >
                       <span
@@ -97,7 +121,6 @@ export default function Estufa() {
                   <div className="bg-[#3d1700] rounded-3xl shadow p-4 relative w-full justify-center items-center flex flex-col gap-4">
                     <p className=" text-white rounded px-4 py-2 text-xl font-bold">ILUMINAÇÃO</p>
                    <button
-                      onClick={() => setOpenTemp(true)}
                       className="text-white rounded px-4 py-2 text-xl font-bold"
                     >
                       <span
@@ -130,16 +153,13 @@ export default function Estufa() {
               </div>
               <div className="flex gap-12">
                 <button
-                  onClick={() => setOpenTemp(true)}
+                  onClick={() => {
+                      setTrackType("irrigation");
+                      setOpenTrack(true);
+                    }}
                   className="bg-[#3d1700] text-white rounded px-8 py-4 text-xl font-bold"
                 >
                   Histórico
-                </button>
-                <button
-                  onClick={() => setOpenTemp(true)}
-                  className="bg-[#3d1700] text-white rounded px-8 py-4 text-xl font-bold"
-                >
-                  + Adicionar ocorrência
                 </button>
               </div>
             </div>
@@ -153,18 +173,21 @@ export default function Estufa() {
                       <span className="mr-2 font-bold text-center">Alerta de pragas:</span>
                     </p>
                     <p className="text-center text-xl font-bold ">
-                      <span className="text-[#003d20] font-bold">INATIVO</span>
+                      <span className="text-[#cc0000] font-bold">ATIVO</span>
                     </p>
                   </div>
                   <div className="flex flex-col gap-2 w-[50%]">
                     <button
-                      onClick={() => setOpenTemp(true)}
+                      onClick={() => {
+                      setTrackType("plague");
+                      setOpenTrack(true);
+                    }}
                       className="bg-[#3d1700] text-white rounded px-4 py-2 text-xl font-bold"
                     >
                       Histórico
                     </button>
                     <button
-                      onClick={() => setOpenTemp(true)}
+                      onClick={() => setOpenSchedule(true)}
                       className="bg-[#3d1700] text-white rounded px-4 py-2 text-xl font-bold"
                     >
                       + Adicionar ocorrência
@@ -176,8 +199,8 @@ export default function Estufa() {
               </div>
           </aside>
         </section>
-        {openTemp && (
-          <TemperatureModal onClose={() => setOpenTemp(false)} />
+        {openTrack && (
+          <TrackModal item={trackType} onClose={() => setOpenTrack(false)} />
         )}
 
         {openSchedule && (

@@ -9,6 +9,14 @@ export interface GreenHouse {
   waterConsumption: number;
   ilumination: boolean;
   ventilation: boolean;
+   history: {
+    temperature: number[];
+    airHumidity: number[];
+    soilHumidity: number[];
+    luminosity: number[];
+    irrigation: number[];
+  },
+  plagueControle:PlagueControle[]
 }
 
 export interface Alert {
@@ -22,6 +30,10 @@ export interface Schedule {
   time: string;
   duration: string;
   days: string[];
+}
+export interface PlagueControle {
+  date: string;
+  text: string;
 }
 
 export interface Data {

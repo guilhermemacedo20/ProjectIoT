@@ -1,88 +1,69 @@
 import { useState } from "react";
 import BaseModal from "./BaseModal";
-import { useEstufaData } from "../hooks/data";
+import { getData, saveData } from "../services/storage";
+import { useParams } from "react-router-dom";
 
-export default function PlagueControlModal({ onClose }: any) {
-  const { data, updateData } = useEstufaData();
-
-  const [time, setTime] = useState("08:30");
-  const [duration, setDuration] = useState("1 hora");
-  const [days, setDays] = useState<string[]>([]);
-
-  const toggleDay = (day: string) => {
-    setDays((prev) =>
-      prev.includes(day)
-        ? prev.filter((d) => d !== day)
-        : [...prev, day]
-    );
-  };
+export default function PlagueControlModal({ onClose }: { onClose: () => void }) {
+  const { id } = useParams();
+  const [date, setDate] = useState("");
+  const [text, setText] = useState("");
 
   const handleSave = () => {
-    const newData = { ...data };
+    if (!date || !text) return;
 
-    // MOCK: salvar programação
-    if (!newData.schedule) newData.schedule = [];
+    const data = getData();
 
-    newData.schedule.push({
-      id: Date.now(),
-      time,
-      duration,
-      days,
-    });
+    const newOccurrence = {
+      date,
+      text,
+    };
 
-    updateData(newData);
+    const updatedData = {
+      ...data,
+      greenHouse: data.greenHouse.map((greenHouse) => {
+      if (greenHouse.id !== parseInt(id || "0")) return greenHouse;
+
+      return {
+        ...greenHouse,
+        plagueControle: [
+          ...(greenHouse.plagueControle || []),
+          newOccurrence,
+        ],
+      };
+    }),
+    };
+
+    saveData(updatedData);
+
     onClose();
   };
 
   return (
     <BaseModal onClose={onClose}>
-      <div className="space-y-4">
-        <div>
-          <label>Hora</label>
-          <input
-            type="time"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-            className="w-full border rounded p-2"
-          />
-        </div>
+      <h2 className="text-xl font-bold mb-4">
+        Adicionar ocorrência (Controle de pragas)
+      </h2>
 
-        <div>
-          <label>Duração</label>
-          <select
-            value={duration}
-            onChange={(e) => setDuration(e.target.value)}
-            className="w-full border rounded p-2"
-          >
-            <option>1 hora</option>
-            <option>2 horas</option>
-          </select>
-        </div>
+      <div className="flex flex-col gap-4">
+        <input
+          type="date"
+          className="border p-2 rounded"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+        />
 
-        <div>
-          <label>Dias</label>
-          <div className="flex gap-2 flex-wrap mt-2">
-            {["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"].map((d) => (
-              <button
-                key={d}
-                onClick={() => toggleDay(d)}
-                className={`px-3 py-1 rounded-full border ${
-                  days.includes(d)
-                    ? "bg-green-600 text-white"
-                    : "bg-gray-200"
-                }`}
-              >
-                {d}
-              </button>
-            ))}
-          </div>
-        </div>
+        <textarea
+          placeholder="Descreva a ocorrência..."
+          className="border p-2 rounded"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
 
         <button
           onClick={handleSave}
-          className="bg-green-900 text-white px-6 py-2 rounded-full ml-auto block"
+          className="bg-green-600 text-white py-2 rounded font-bold"
         >
-          Agendar
+          Salvar
         </button>
       </div>
     </BaseModal>
