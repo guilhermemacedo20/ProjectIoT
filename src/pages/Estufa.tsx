@@ -4,6 +4,7 @@ import { useEstufaData } from "../hooks/data";
 import PlagueControlModal from "../components/PlagueControlModal";
 import { useParams } from "react-router-dom";
 import TrackModal from "../components/TrackModal";
+import ChartCard from "../components/Chart";
 
 export default function Estufa() {
   const { id } = useParams();
@@ -23,10 +24,10 @@ export default function Estufa() {
         <h1 className="text-3xl font-bold text-center mb-8 uppercase">
           Estufa {estufa.name}
         </h1>
-        <section className="flex gap-6 mx-auto w-[90%]">
-          <div className="flex w-[70%]">  
+        <section className="flex flex-col lg:flex-row gap-6 mx-auto lg:w-[90%]">
+          <div className="flex flex-col lg:flex-row  lg:w-[70%]">  
             <div className="flex flex-col w-full gap-8">
-              <div className="flex gap-6 w-full">
+              <div className="flex flex-col lg:flex-row gap-6 w-full">
                 <div className="bg-white rounded-3xl shadow p-4 relative w-full">
                   <div className="bg-green-900 text-white text-center py-2 rounded-full font-bold">
                     Temperatura
@@ -35,6 +36,13 @@ export default function Estufa() {
                   <div className="mt-4 text-3xl font-bold">
                     🌡 {estufa.temperature}°C
                   </div>
+
+                  <ChartCard
+                    title="Temperatura"
+                    data={estufa.history.temperature}
+                    unit="°C"
+                    color="#16a34a"
+                  />
 
                   <button
                     onClick={() => {
@@ -54,6 +62,12 @@ export default function Estufa() {
                   <div className="mt-4 text-3xl font-bold">
                     💨 {estufa.airHumidity}%
                   </div>
+                  <ChartCard
+                    title="Umidade do Ar"
+                    data={estufa.history.airHumidity}
+                    unit="%"
+                    color="#3b82f6"
+                  />
                   <button
                     onClick={() => {
                       setTrackType("air");
@@ -72,6 +86,12 @@ export default function Estufa() {
                   <div className="mt-4 text-3xl font-bold">
                     🌱 {estufa.soilHumidity}%
                   </div>
+                  <ChartCard
+                    title="Umidade do Solo"
+                    data={estufa.history.soilHumidity}
+                    unit="%"
+                    color="#22c55e"
+                  />
                   <button
                     onClick={() => {
                       setTrackType("soil");
@@ -83,8 +103,8 @@ export default function Estufa() {
                   </button>
                 </div>
               </div>
-              <div className="flex gap-6 w-full">
-                <div className="bg-white rounded-3xl shadow p-4 relative w-[70%]">
+              <div className="flex flex-col lg:flex-row gap-6 w-full">
+                <div className="bg-white rounded-3xl shadow p-4 relative lg:w-[70%] max-w-[800px]">
                   <div className="bg-green-900 text-white text-center py-2 rounded-full font-bold">
                     Intensidade luminosa
                   </div>
@@ -92,6 +112,13 @@ export default function Estufa() {
                   <div className="mt-4 text-3xl font-bold text-right pr-4">
                     {estufa.luminosity} lux
                   </div>
+
+                  <ChartCard
+                    title="Luminosidade"
+                    data={estufa.history.luminosity}
+                    unit=" lux"
+                    color="#eab308"
+                  />
 
                   <button
                     onClick={() => {
@@ -103,7 +130,7 @@ export default function Estufa() {
                     +
                   </button>
                 </div>
-                <div className="flex flex-col w-[30%] gap-4">
+                <div className="flex flex-col lg:w-[30%] gap-4">
                   <div className="bg-[#3d1700] rounded-3xl shadow p-4 relative w-full justify-center items-center flex flex-col gap-4">
                     <p className=" text-white rounded px-4 py-2 text-xl font-bold">VENTILAÇÃO</p>
                    <button
@@ -138,7 +165,7 @@ export default function Estufa() {
             </div>      
           </div>
 
-          <aside className="flex flex-col gap-8 w-[30%]"> 
+          <aside className="flex flex-col gap-8 lg:w-[30%]"> 
             <div className="bg-gradient-to-r from-green-200 to-blue-300 rounded-3xl p-6 flex justify-between items-center flex-col gap-6">
               <div className="flex gap-4 items-center">              
                 <span className="text-2xl font-bold">Status irrigação:</span>
@@ -176,7 +203,7 @@ export default function Estufa() {
                       <span className="text-[#cc0000] font-bold">ATIVO</span>
                     </p>
                   </div>
-                  <div className="flex flex-col gap-2 w-[50%]">
+                  <div className="flex flex-col gap-2 lg:w-[50%]">
                     <button
                       onClick={() => {
                       setTrackType("plague");

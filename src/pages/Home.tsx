@@ -20,7 +20,7 @@ export default function Home() {
     <>
       <HeaderComponent />
       <section className="m-12">
-        <div className="grid grid-cols-2 gap-4 ">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 ">
         {data.greenHouse.map((e) => (
          <div
           key={e.id}
@@ -32,7 +32,7 @@ export default function Home() {
           </h2>
 
           <div className="p-6">
-            <div className="grid grid-cols-2 gap-y-6 text-xl font-bold uppercase">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-6 text-xl font-bold uppercase">
               <div className="flex items-center gap-3">
                 <span>🌡</span>
                 <span>Temperatura</span>
@@ -45,7 +45,7 @@ export default function Home() {
                 <span className="text-2xl">{e.airHumidity}%</span>
               </div>
 
-              <div className="col-span-2 border-t border-black/30"></div>
+              <div className="col-span-1 lg:col-span-2 border-t border-black/30"></div>
 
               <div className="flex items-center gap-3">
                 <span>☀</span>
@@ -59,9 +59,9 @@ export default function Home() {
                 <span className="text-2xl">{e.soilHumidity}%</span>
               </div>
 
-              <div className="col-span-2 border-t border-black/30"></div>
+              <div className="col-span-1 lg:col-span-2 border-t border-black/30"></div>
 
-              <div className="col-span-2 flex justify-center mt-2">
+              <div className="col-span-1 lg:col-span-2 flex justify-center mt-2">
                 <div className="flex items-center gap-4 bg-gradient-to-r from-[#cddfd8] via-[#b7d0ec] to-[#94b9ff] rounded-full px-8 py-3">
                   <span className="uppercase font-bold text-xl">Irrigação</span>
 
@@ -79,8 +79,8 @@ export default function Home() {
         </div>
         ))}
       </div>
-      <div className="flex my-20 justify-center gap-12">
-      <div className="flex items-center gap-12 bg-white rounded-[36px] p-6 shadow-md w-fit px-[5%]">
+      <div className="flex flex-col lg:flex-row my-20 justify-center gap-12">
+      <div className="flex flex-col sm:flex-row items-center gap-12 bg-white rounded-[36px] p-6 shadow-md w-fit px-[5%]">
         <div className="text-6xl">🏢</div>
 
           <div className="flex gap-6">
@@ -109,7 +109,7 @@ export default function Home() {
             <span>Alertas do Sistema</span>
           </div>
 
-          <div className="py-6 text-red-600 text-2xl font-bold">
+          <div className="py-6 text-red-600 text-2xl font-bold text-center">
             {data.alerts.length === 0
               ? "Nenhum alerta no momento"
               : `${data.alerts.length} alerta(s) ativo(s)`}
