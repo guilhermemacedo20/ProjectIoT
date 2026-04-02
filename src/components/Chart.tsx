@@ -41,7 +41,7 @@ export default function ChartCard({
             <XAxis dataKey="name" hide />
 
             <Tooltip
-              formatter={(value: number) => `${value}${unit || ""}`}
+              formatter={(value: any) => `${value}${unit || ""}`}
               contentStyle={{
                 borderRadius: "10px",
                 border: "none",
